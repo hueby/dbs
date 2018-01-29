@@ -26,5 +26,13 @@ document setups in all styles.
 - Which Markdown style?
 - 
 
+## Solutiontracker
+
+## Scratchpad
+
+- When choosing GitHub-Markdown-Style, this might help: [Pandoc Tricks](https://github.com/jgm/pandoc/wiki/Pandoc-Tricks)
+- Folder structure for chapters
+  - chapter01, c01, 01, 1, {prefix}1{suffix} ?
+
 ## License
 MIT
