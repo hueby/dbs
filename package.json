@@ -1,0 +1,27 @@
+{
+  "name": "dbs",
+  "version": "0.0.1",
+  "description": "Document build system, depending on folder structure and single filed sub chapters",
+  "main": "index.js",
+  "scripts": {
+      "start":"node -r ts-node/register index.ts",
+      "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hueby/dbs.git"
+  },
+  "author": "Dennis Huebner <dennis.huebner89@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hueby/dbs/issues"
+  },
+  "homepage": "https://github.com/hueby/dbs#readme",
+  "dependencies": {
+    "ts-node": "^4.1.0",
+    "typescript": "^2.6.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.11"
+  }
+}
