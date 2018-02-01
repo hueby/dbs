@@ -1,6 +1,6 @@
 {
   "name": "dbs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Document build system, depending on folder structure and single filed sub chapters",
   "main": "index.js",
   "scripts": {
