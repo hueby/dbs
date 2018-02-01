@@ -1,14 +1,16 @@
 import * as fs from "fs";
-import * as child from 'child_process';
+import * as child from "child_process";
+import { Config } from "./config";
 
 export class Source {
     private chapterPath: string;
     private items: string[];
     private markdown: string;
     private resultFileName: string;
+    private config: Config;
 
     constructor() {
-        var self = this;
+        this.config = new Config();
         this.resultFileName = "result";
         this.chapterPath = this.getChapterPath();
         this.items = this.getChapters();
@@ -16,20 +18,24 @@ export class Source {
         this.convertToPDF();
     }
 
-    public convertToPDF() {
-        child.exec("pandoc -o " + this.resultFileName + ".pdf " + this.resultFileName + ".md");
+    private convertToPDF() {
+        var exec = "pandoc ";
+        exec += "-o " + this.resultFileName + ".pdf ";
+        exec += this.resultFileName + ".md ";
+        child.exec(exec);
     }
 
-    public fillMarkdown() {
+    private fillMarkdown() {
         var self = this;
         this.markdown = "";
 
-        this.items.forEach((item) => {
-            let mds = fs.readdirSync(item);
-            mds.forEach((md) => {
-                let path = item + "/" + md;
+        this.items.forEach((item, index) => {
+            let subchapters = self.config.config.chapters[index];
+            // let mds = fs.readdirSync(item);
+            subchapters.forEach((md: any) => {
+                let path = item + "/" + self.deCapitalizeFirstLetter(md) + ".md";
                 let content = fs.readFileSync(path);
-                self.markdown += "# " + self.capitalizeFirstLetterAndRemoveExt(md) + "\n";
+                self.markdown += "# " + md + "\n";
                 self.markdown += content + "\n";
             });
         });
@@ -42,7 +48,12 @@ export class Source {
         return uppercased.split(".")[0];
     }
 
-    public getChapters() {
+    private deCapitalizeFirstLetter(word: string) {
+        let lowercased = word.charAt(0).toLowerCase() + word.slice(1);
+        return lowercased;
+    }
+
+    private getChapters() {
         var self = this;
         let items = fs.readdirSync(this.chapterPath);
         return items.map((item: string) => {
@@ -50,7 +61,7 @@ export class Source {
         });
     }
 
-    public getChapterPath(): string {
+    private getChapterPath(): string {
         let currentPath = process.cwd();
         let chapters = currentPath + "/chapters";
         try {
