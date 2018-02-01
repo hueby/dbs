@@ -28,6 +28,17 @@ document setups in all styles.
 
 ## Solutiontracker
 
+- Chapters are sorted like:
+    - chapters/ (this name of the dir is hardcoded!)
+        - 1/
+        - 2/
+        - ...
+        - n/
+
+- The subchapters have to be sorted manually
+- An assistent will guide the user
+- Subchapters can be placed freely
+
 ## Scratchpad
 
 - When choosing GitHub-Markdown-Style, this might help: [Pandoc Tricks](https://github.com/jgm/pandoc/wiki/Pandoc-Tricks)
